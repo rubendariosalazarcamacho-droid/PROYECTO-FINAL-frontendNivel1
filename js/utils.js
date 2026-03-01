@@ -37,3 +37,15 @@ function insertarTodasLasEstancias(){
     })
 }
 insertarTodasLasEstancias()
+
+
+function filtrarEstaciasPorCiudad(){
+    contenedorEstancias.innerHTML= ""
+
+    stays.forEach((elementoActual) =>{
+        if(elementoActual.city=== "Turku"){
+            insertarEstancia(elementoActual)
+        }
+    })
+}
+filtrarEstaciasPorCiudad()
