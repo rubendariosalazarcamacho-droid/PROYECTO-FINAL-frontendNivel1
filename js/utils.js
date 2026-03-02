@@ -49,3 +49,35 @@ function filtrarEstaciasPorCiudad(){
     })
 }
 filtrarEstaciasPorCiudad()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// creo un array que contenga las ciudades para poder filtrar Y CREO LA FUNCION QUE LOS INSERTE EN EL DOM, en el MODAL CIUDADES DINAMICO
+
+const cities = stays.map ((estancia) =>{
+   
+    return {
+        "city":estancia.city,
+        "country":estancia.country
+    }
+
+})
+
+//console.log(cities)
+
+const ciudadesDinamico = document.querySelector ("#ciudadesDinamico")
+function mostrarCiudades (){
+    ciudadesDinamico.innerHTML=""
+    cities.forEach((ciudadActual) =>{
+
+        ciudadesDinamico.innerHTML += `
+        <div class=" h-[40px] flex items-center gap-2 border-0 hover:bg-[#f4f4f4] hover:border-1 hover:border-gray-700 cursor-pointer">
+          <img class="w-[25px] h-[25px] block" src="/imagenes/icon-location.svg" alt="icono posición">
+          <span>${ciudadActual.city}, ${ciudadActual.country}</span>
+        </div>
+        
+        `
+    })
+
+}
+mostrarCiudades()
