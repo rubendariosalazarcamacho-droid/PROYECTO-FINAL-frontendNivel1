@@ -190,14 +190,29 @@ masChildren.addEventListener("click", ()=>{ //AUMENTA LA CANTIDAD DE CHILDREN SI
 })
 
 
+
+const btnAddLocation= document.querySelector ("#btnAddLocation")
 // Este evento se pone UNA SOLA VEZ, fuera de la función
 ciudadesDinamico.addEventListener("click", (event) => {
     // Buscamos el div más cercano al click que tenga un ID (por si hicieron click en el texto o imagen)
+    console.log("Hubo un click dentro de contenedor ciudadesDinamico")
     const divSeleccionado = event.target.closest("div[id]");
     
     if (divSeleccionado) {
         const nombreCiudad = divSeleccionado.id;
         console.log("Ciudad seleccionada:", nombreCiudad);
+
+        filtroCiudades.value=nombreCiudad
+
+        console.log(filtroCiudades.value)
+
+        filtrarEstaciasPorCiudad(nombreCiudad)
+
+        ciudadesDinamico.classList.toggle("hidden")
+
+        modalFiltro.classList.toggle("hidden")
+
+        btnAddLocation.innerHTML=nombreCiudad
         
         // Aquí puedes ejecutar tu lógica para cerrar el menú y filtrar
         //filtrarPorCiudad(nombreCiudad);
