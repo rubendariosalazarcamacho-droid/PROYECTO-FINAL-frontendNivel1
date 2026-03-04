@@ -1,80 +1,99 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./js/main.js" type="module"></script>
-    <script src="./js/utils.js" type="module"></script>
-    <link rel="stylesheet" href="./css/styles.css">
-    <title>proyecto-final-frontendnivel1</title>
-  </head>
-  <body class="p-4 relative">
-    <div class="flex flex-col gap-6 items-center">
-      <div class="flex  self-start">
-        <img class="w-22.5" src="./public/imagenes/logo-f7862584.svg" alt="logo windbnb">
-      </div>
-      <div  class="flex w-[256px] h-[45px] border border-gray-300 gap-0 justify-center rounded-2xl shadow-[0_1px_6px_rgba(0,0,0,0.1)]">
-        <input id="location" class="text-[12px] font-medium  w-[46%] text-center" type="text" placeholder="Add location">
-        <input id="guests" class="text-[12px] font-medium  w-[36%] border-l border-r border-gray-300 text-center"  type="text" placeholder="Add guests">
-        <button id="search" type="button" class=" w-[18%] flex justify-center items-center "><img class="w-[20px] h-[20px] " src="/imagenes/search.svg" alt="lupa"></button>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="./js/main.js" type="module"></script>
+  <script src="./js/utils.js" type="module"></script>
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>proyecto-final-frontendnivel1</title>
+</head>
+
+<body class="p-4 relative">
+  <div class="flex flex-col gap-6 items-center">
+    <div class="flex  self-start">
+      <img class="w-22.5" src="./public/imagenes/logo-f7862584.svg" alt="logo windbnb">
     </div>
-    <div id="modalFiltro" class="w-full p-4 bg-white flex flex-col gap-4 absolute left-0 top-0 z-50">
-      <div class="flex justify-between items-center"><p class="text-xs font-bold">Edit your search</p> <button class="text-xl font-medium">X</button></div> 
-      <!--CONTENEDOR INPUTS LOCATION Y GUESTS//////////////////////////////////////////////////////////////////////////////////////////-->
-      <div>
+    <div id="contenedorBotonesActivaModal"
+      class="flex w-[256px] h-[45px] border border-gray-300 gap-0 justify-center rounded-2xl shadow-[0_1px_6px_rgba(0,0,0,0.1)]">
+      <button class="text-[12px] font-medium  w-[46%] text-center" type="button"><span class="text-gray-500">Add
+          location</span></button>
+      <button class="text-[12px] font-medium  w-[36%] border-l border-r border-gray-300 text-center" type="button"><span
+          class="text-gray-500">Add guests</span></button>
+      <button type="button" class=" w-[18%] flex justify-center items-center "><img class="w-[20px] h-[20px] "
+          src="/imagenes/search.svg" alt="lupa"></button>
+    </div>
+  </div>
+  <div id="modalFiltro" class="hidden w-full p-4 bg-white flex flex-col gap-4 absolute left-0 top-0 z-50">
+    <div class="flex justify-between items-center">
+      <p class="text-xs font-bold">Edit your search</p> <button id="botonXCierraModalFiltro"
+        class="text-xl font-medium">X</button>
+    </div>
+    <!--CONTENEDOR INPUTS LOCATION Y GUESTS//////////////////////////////////////////////////////////////////////////////////////////-->
+    <div>
       <div class="relative">
         <h2 class="text-[9px] font-bold absolute ml-3 mt-1">LOCATION</h2>
-        <input class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-t-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)]" type="text" placeholder="Add location">
-      </div> 
+        <input id="filtroCiudades"
+          class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-t-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)]"
+          type="text" placeholder="Add location">
+      </div>
       <div class="relative">
-        <h2 class="text-[9px] font-bold absolute ml-3 mt-1" >GUESTS</h2>
-        <input class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-b-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)]" type="text" placeholder="Add guests">
+        <h2 class="text-[9px] font-bold absolute ml-3 mt-1">GUESTS</h2>
+        <input id="filtroInvitados"
+          class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-b-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)]"
+          type="text" placeholder="Add guests">
       </div>
-      </div> 
+    </div>
 
-      <!--CONTENEDOR MODAL CIUDADES DINAMICO-->
-      <div id="ciudadesDinamico" class="max-h-[250px] overflow-y-auto" >
+    <!--CONTENEDOR MODAL CIUDADES DINAMICO-->
+    <div id="ciudadesDinamico" class="hidden max-h-[200px] overflow-y-auto">
 
-        <div class="bg-[#f4f4f4] h-[40px] flex items-center">
-          <img class="w-[25px] h-[25px] block" src="/imagenes/icon-location.svg" alt="icono posición">
-          <span></span>
-        </div>
-      </div>
+      <!-- <div class="bg-[#f4f4f4] h-[40px] flex items-center">
+        <img class="w-[25px] h-[25px] block" src="/imagenes/icon-location.svg" alt="icono posición">
+        <span></span>
+      </div> -->
+    </div>
 
 
-      <!--CONTENEDOR MODAL FILTRO TOTAL ADULTOS Y NIÑOS ////////////////////////////////////////////////////////////////////////////// -->
+    <!--CONTENEDOR MODAL FILTRO TOTAL ADULTOS Y NIÑOS ////////////////////////////////////////////////////////////////////////////// -->
+    <div id="modalInvitadosDinamico" class="hidden">
       <div class="flex flex-col gap-2">
         <h2 class="text-[14px] font-bold">Adults</h2>
         <p class="text-[13px] text-gray-600 ">Ages 18 or above</p>
-        <div class="flex gap-5"><button class="bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px]">-</button> <span class="text-[16px] font-bold">4</span> <button class="bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px]">+</button></div>
-      </div> 
+        <div class="flex gap-5"><button id="menosAdults"
+            class="flex items-center justify-center bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px]"><span>-</span></button>
+          <span id="numTotalAdultos" class="text-[16px] font-bold">0</span> <button id="masAdults"
+            class="bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px] flex items-center justify-center"><span>+</span></button>
+        </div>
+      </div>
       <div class="flex flex-col gap-2 mt-[20px]">
         <h2 class="text-[14px] font-bold">Children</h2>
         <p class="text-[13px] text-gray-600 ">Ages 17 or under</p>
-        <div class="flex gap-5"><button class="bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px]">-</button> <span class="text-[16px] font-bold">1</span> <button class="bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px]">+</button></div>
-      </div> 
-      
-      <div><button id="searchModal" type="button" class="mt-4 w-[100px] h-[34px] text-white text-[14px] rounded-xl mx-auto flex justify-center items-center gap-2 bg-[#ea5656]"><img class="w-[20px] h-[20px] invert brightness-0" src="/imagenes/search.svg" alt="lupa">search</button></div>
-
-    </div> <!--FIN MODAL BUSQUEDA-->
-
-    <div class="flex justify-between my-5">
-      <h1>Stays in Finland</h1>
-      <div>12+ stays</div>
+        <div class="flex gap-5"><button id="menosChildren"
+            class="flex items-center justify-center bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px]"><span>-</span></button>
+          <span id="numTotalChildren" class="text-[16px] font-bold">0</span> <button id="masChildren"
+            class="flex items-center justify-center bg-[#efefef] w-[25px] h-[25px] border border-[#9e9e9e] border-[2px]"><span>+</span></button>
+        </div>
+      </div>
     </div>
 
-    <div id="contenedorEstancias" class=" grid grid-cols-1 gap-4">
-      
+    <div><button id="searchModal" type="button"
+        class="mt-4 w-[100px] h-[34px] text-white text-[14px] rounded-xl mx-auto flex justify-center items-center gap-2 bg-[#ea5656]"><img
+          class="w-[20px] h-[20px] invert brightness-0" src="/imagenes/search.svg" alt="lupa">search</button></div>
 
-    </div>
+  </div> <!--FIN MODAL BUSQUEDA-->
 
-    
-   
+  <div class="flex justify-between my-5">
+    <h1>Stays in Finland</h1>
+    <div>12+ stays</div>
+  </div>
 
-    
-  
-    
-  </body>
+  <div id="contenedorEstancias" class=" grid grid-cols-1 gap-4">
+
+  </div>
+
+</body>
+
 </html>
