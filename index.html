@@ -11,43 +11,46 @@
   <title>proyecto-final-frontendnivel1</title>
 </head>
 
-<body class="p-4 relative">
-  <div class="flex flex-col gap-6 items-center">
-    <div class="flex  self-start">
+<body class="p-4 relative md:p-8">
+  <div class="flex flex-col gap-6 items-center md:flex-row justify-between items-center ">
+    <div class="flex  self-start md:self-center">
       <img class="w-22.5" src="./public/imagenes/logo-f7862584.svg" alt="logo windbnb">
     </div>
     <div id="contenedorBotonesActivaModal"
       class="flex w-[256px] h-[45px] border border-gray-300 gap-0 justify-center rounded-2xl shadow-[0_1px_6px_rgba(0,0,0,0.1)]">
       <button  class="text-[12px] font-medium  w-[46%] text-center" type="button"><span id="btnAddLocation" class="text-gray-500">Add
           location</span></button>
-      <button class="text-[12px] font-medium  w-[36%] border-l border-r border-gray-300 text-center" type="button"><span
+      <button class="text-[12px] font-medium  w-[36%] border-l border-r border-gray-300 text-center" type="button"><span id="btnAddGuests"
           class="text-gray-500">Add guests</span></button>
       <button type="button" class=" w-[18%] flex justify-center items-center "><img class="w-[20px] h-[20px] "
           src="/imagenes/search.svg" alt="lupa"></button>
     </div>
   </div>
-  <div id="modalFiltro" class="hidden w-full p-4 bg-white flex flex-col gap-4 absolute left-0 top-0 z-50">
+  <div id="modalFiltro" class="hidden w-full p-4 bg-white flex flex-col gap-4 absolute left-0 top-0 z-50 md:p-12">
     <div class="flex justify-between items-center">
       <p class="text-xs font-bold">Edit your search</p> <button id="botonXCierraModalFiltro"
         class="text-xl font-medium">X</button>
     </div>
     <!--CONTENEDOR INPUTS LOCATION Y GUESTS//////////////////////////////////////////////////////////////////////////////////////////-->
-    <div>
-      <div class="relative">
+    <div class="flex flex-col md:flex-row w-full border-gray-300 rounded-[15px] shadow-[0_1px_6px_rgba(0,0,0,0.1)] ">
+      <div class="relative md:w-[34%]">
         <h2 class="text-[9px] font-bold absolute ml-3 mt-1">LOCATION</h2>
         <input id="filtroCiudades"
-          class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-t-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)]"
+          class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-t-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)] md:shadow-none border-none rounded-b-[15px]"
           type="text" placeholder="Add location">
       </div>
-      <div class="relative">
+      <div class="relative md:w-[34%]">
         <h2 class="text-[9px] font-bold absolute ml-3 mt-1">GUESTS</h2>
         <input id="filtroInvitados"
-          class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-b-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)]"
+          class="text-[14px] h-[50px] w-full px-3 pt-2  border-gray-300 gap-0 justify-center rounded-b-[12px] shadow-[0_1px_6px_rgba(0,0,0,0.1)] md:shadow-none border-l border-r rounded-t-[15px]"
           type="text" placeholder="Add guests">
       </div>
+      <div class="w-[32%] flex justify-center items-center"><button id="searchModal" type="button"
+        class="hidden md:flex w-[100px] h-[34px] text-white text-[14px] rounded-xl mx-auto flex justify-center items-center gap-2 bg-[#ea5656]"><img
+          class="w-[20px] h-[20px] invert brightness-0" src="/imagenes/search.svg" alt="lupa">search</button></div>
     </div>
 
-    <!--CONTENEDOR MODAL CIUDADES DINAMICO-->
+    <!--CONTENEDOR MODAL lista de CIUDADES DINAMICO-->
     <div id="ciudadesDinamico" class="hidden max-h-[200px] overflow-y-auto">
 
       <!-- <div class="bg-[#f4f4f4] h-[40px] flex items-center">
@@ -79,7 +82,7 @@
       </div>
     </div>
 
-    <div><button id="searchModal" type="button"
+    <div><button id="searchModal2" type="button"
         class="mt-4 w-[100px] h-[34px] text-white text-[14px] rounded-xl mx-auto flex justify-center items-center gap-2 bg-[#ea5656]"><img
           class="w-[20px] h-[20px] invert brightness-0" src="/imagenes/search.svg" alt="lupa">search</button></div>
 
@@ -90,7 +93,7 @@
     <div>12+ stays</div>
   </div>
 
-  <div id="contenedorEstancias" class=" grid grid-cols-1 gap-4">
+  <div id="contenedorEstancias" class=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
   </div>
 

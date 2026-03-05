@@ -58,7 +58,7 @@ insertarTodasLasEstancias()
 // })
 
 // console.log(cities)
-const ciudadesUnicas = stays.filter((valorActual, indiceActual, arregloCompleto) => {
+const ciudadesUnicas = stays.filter((valorActual, indiceActual, arregloCompleto) => {  //crea un nuevo array de objetos donde no se repite la ciudad, para mostrar como menu dinámico
     
     const primeraAparicion = arregloCompleto.findIndex(item => item.city === valorActual.city);
     
@@ -70,7 +70,7 @@ const ciudadesUnicas = stays.filter((valorActual, indiceActual, arregloCompleto)
 
 
 const ciudadesDinamico = document.querySelector ("#ciudadesDinamico") //contenedor donde se muestra lista de ciudades para que el usuario escoja
-function mostrarCiudades (){
+function mostrarCiudades (){  //esta funcion muestra en menú o lalista de ciudades con estancias en Finlandia, sin repetir ciudad, itera el array ciudadesUnicas
     ciudadesDinamico.innerHTML=""
     ciudadesUnicas.forEach((ciudadActual) =>{
 
@@ -89,7 +89,7 @@ mostrarCiudades()
 const contenedorBotonesActivaModal= document.querySelector ("#contenedorBotonesActivaModal") //contenedor que al dar click muestra el modal de busqueda con id=modalFiltro
 const botonXCierraModalFiltro= document.querySelector ("#botonXCierraModalFiltro") //este boton muestra una X, al dar click cierra el modal de busqueda con id=modalFiltro
 const modalFiltro= document.querySelector ("#modalFiltro") //contenedor que contiene todo el modal de busqueda
-const searchModal= document.querySelector ("#searchModal") // boton que esta en la parte inferior del modal, cierra el modal id=modalFiltro
+const searchModal2= document.querySelector ("#searchModal2") // boton que esta en la parte inferior del modal, cierra el modal id=modalFiltro
 
 contenedorBotonesActivaModal.addEventListener("click", function(){ //muestra el modal para filtrar
     modalFiltro.classList.toggle("hidden")
@@ -134,6 +134,8 @@ function filtrarEstaciasPorCiudad(valorFiltroCiudad){
         }
     })
 }
+
+
 //filtrarEstaciasPorCiudad()
 
 filtroCiudades.addEventListener("input", () =>{
@@ -148,6 +150,9 @@ const menosChildren= document.querySelector ("#menosChildren")
 const masChildren= document.querySelector ("#masChildren")
 const numTotalAdultos= document.querySelector ("#numTotalAdultos") //span: numero de adultos
 const numTotalChildren= document.querySelector ("#numTotalChildren") // span: numero de children
+const btnAddGuests= document.querySelector ("#btnAddGuests") // span de boton que muestra el modal de busqueda
+
+
 
 menosAdults.addEventListener("click", ()=>{ //DISMINUYE LA CANTIDAD DE ADULTOS SI SE DA CLICK EN EL BOTON -
     let numeroAdultos=0
@@ -157,7 +162,14 @@ menosAdults.addEventListener("click", ()=>{ //DISMINUYE LA CANTIDAD DE ADULTOS S
         numeroAdultos--
     }
     numTotalAdultos.innerHTML=numeroAdultos
+    
+   let total = Number(numTotalAdultos.innerHTML) + Number(numTotalChildren.innerHTML)
+   filtroInvitados.value= total
+
+   console.log(`Número de invitados ${total}`)
+
 })
+
 
 masAdults.addEventListener("click", ()=>{ //AUMENTA LA CANTIDAD DE ADULTOS SI SE DA CLICK EN EL BOTON +
     let numeroAdultos=0
@@ -167,6 +179,11 @@ masAdults.addEventListener("click", ()=>{ //AUMENTA LA CANTIDAD DE ADULTOS SI SE
         numeroAdultos++
     }
     numTotalAdultos.innerHTML=numeroAdultos
+
+   let total = Number(numTotalAdultos.innerHTML) + Number(numTotalChildren.innerHTML)
+   filtroInvitados.value= total
+   console.log(`Número de invitados ${total}`)
+
 })
 
 menosChildren.addEventListener("click", ()=>{ //DISMINUYE LA CANTIDAD DE CHILDREN SI SE DA CLICK EN EL BOTON -
@@ -177,9 +194,15 @@ menosChildren.addEventListener("click", ()=>{ //DISMINUYE LA CANTIDAD DE CHILDRE
         numeroChildren--
     }
     numTotalChildren.innerHTML=numeroChildren
+
+   let total = Number(numTotalAdultos.innerHTML) + Number(numTotalChildren.innerHTML)
+   filtroInvitados.value= total
+   console.log(`Número de invitados ${total}`)
+
 })
 
-masChildren.addEventListener("click", ()=>{ //AUMENTA LA CANTIDAD DE CHILDREN SI SE DA CLICK EN EL BOTON -
+
+masChildren.addEventListener("click", ()=>{ //AUMENTA LA CANTIDAD DE CHILDREN SI SE DA CLICK EN EL BOTON +
     let numeroChildren=0
     let numCapturado=Number(numTotalChildren.innerHTML) //captura el valor que hay en span
     numeroChildren=numCapturado
@@ -187,37 +210,52 @@ masChildren.addEventListener("click", ()=>{ //AUMENTA LA CANTIDAD DE CHILDREN SI
         numeroChildren++
     }
     numTotalChildren.innerHTML=numeroChildren
+
+    let total= Number(numTotalAdultos.innerHTML) + Number(numTotalChildren.innerHTML)
+    filtroInvitados.value= total
+    console.log(`Número de invitados ${total}`)
+    
 })
 
 
 
-const btnAddLocation= document.querySelector ("#btnAddLocation")
-// Este evento se pone UNA SOLA VEZ, fuera de la función
+const btnAddLocation= document.querySelector ("#btnAddLocation") //uno delos botones que muestra el modal de busqueda
+
 ciudadesDinamico.addEventListener("click", (event) => {
-    // Buscamos el div más cercano al click que tenga un ID (por si hicieron click en el texto o imagen)
-    console.log("Hubo un click dentro de contenedor ciudadesDinamico")
-    const divSeleccionado = event.target.closest("div[id]");
+        const divSeleccionado = event.target.closest("div[id]"); //guarda el div donde se dio click, la etiqueta completa
     
     if (divSeleccionado) {
-        const nombreCiudad = divSeleccionado.id;
+        const nombreCiudad = divSeleccionado.id; //extrae el id, que es la ciudad unica y la guarda
         console.log("Ciudad seleccionada:", nombreCiudad);
 
-        filtroCiudades.value=nombreCiudad
-
-        console.log(filtroCiudades.value)
+        filtroCiudades.value=nombreCiudad       
 
         filtrarEstaciasPorCiudad(nombreCiudad)
 
         ciudadesDinamico.classList.toggle("hidden")
 
-        modalFiltro.classList.toggle("hidden")
+        modalFiltro.classList.toggle("hidden") //al dar click en la lista que muestra las ciudades se cierra
 
-        btnAddLocation.innerHTML=nombreCiudad
+        btnAddLocation.innerHTML=nombreCiudad        
         
-        // Aquí puedes ejecutar tu lógica para cerrar el menú y filtrar
-        //filtrarPorCiudad(nombreCiudad);
     }
 })
+
+export function filtrarEstanciasPorCiudadInvitados(valorFiltroCiudad, valorFiltroInvitados){
+    contenedorEstancias.innerHTML=""
+
+    stays.forEach((elementoActual) =>{
+        if(elementoActual.city===valorFiltroCiudad && elementoActual.maxGuests>=valorFiltroInvitados){
+            insertarEstancia(elementoActual)
+        }
+    })
+
+}
+
+// filtrarEstanciasPorCiudadInvitados()
+
+
+
 
 
 
