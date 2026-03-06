@@ -12,13 +12,14 @@ const contenedorEstancias = document.querySelector("#contenedorEstancias")
 function insertarEstancia(elementoActual) {
     let estancia = elementoActual
 
-    const { type, beds, rating, title } = estancia;
+    const { type, beds, rating, title, superHost } = estancia;
 
     contenedorEstancias.innerHTML += `
 
     <div class="flex flex-col gap-2" >  
     <div><img class="rounded-3xl w-[345px] h-[235px]" src="${estancia.photo}" alt="foto estancia"></div>
         <div class="flex justify-between px-2">
+            ${superHost===true ?'<div class="h-[22px] w-[80px] text-[11px] text-gray-700 font-medium border-[1px] text-center">SUPERHOST</div>' :""}
             <div class="text-xs">${type} . ${beds} beds</div>
             <div class="flex text-xs gap-2"><img class="w-[16px] h-[16px]" src="/imagenes/star.svg" alt="estrella"> ${rating}</div>
         </div>
@@ -30,8 +31,10 @@ function insertarEstancia(elementoActual) {
 
 //FUNCION QUE CREA MUESTRA TODAS LAS ESTANCIAS POR DEFECTO  AL CARGAR LA PAGINA
 //ESTA LLAMA A LA FUNCION:  insertarEstancia() QUE USA COMO PARAMETRO EL OBJETO ACTUAL DEL ARRAY stay[]
-
-export function insertarTodasLasEstancias() {
+/**
+ * esta funcion inserta todas las estancias en pantalla
+ */
+export function insertarTodasLasEstancias() { 
     contenedorEstancias.innerHTML = ""
 
     stays.forEach((elementoActual) => {
